@@ -119,13 +119,54 @@ export const skillCategories: SkillCategory[] = [
 
 export const projects: Project[] = [
   {
+    id: 10,
+    title: "Service System Marketplace",
+    description:
+      "A multi-vendor marketplace platform connecting customers with local businesses for booking services, reserving spaces, and ordering products.",
+    longDescription:
+      "A full-featured multi-vendor marketplace platform that connects customers with local merchants and service providers. The customer-facing app allows users to book services, reserve spaces (hotels, venues, rentals), order products, and save favorite merchants. The merchant portal provides business management tools including listing creation, time-slot scheduling, inventory management with SKU tracking, pricing configuration, and a centralized dashboard. Built with a Laravel API backend and Next.js frontend for both customer and merchant interfaces.",
+    image: "/projects/service-system-customer.png",
+    screenshots: [
+      "/projects/service-system-customer.png",
+      "/projects/service-system-merchants.png",
+      "/projects/service-system-store.png",
+      "/projects/service-system-merchant.png",
+      "/projects/service-system-register.png",
+      "/projects/service-system-login.png",
+      "/projects/service-system-dashboard.png",
+    ],
+    highlights: [
+      "Customer marketplace with 500+ services across 50+ locations",
+      "Merchant portal with business profile management and listing tools",
+      "Service booking with time-slot scheduling and capacity management",
+      "Date-range reservations for rentals and accommodations",
+      "Product inventory management with SKU tracking",
+    ],
+    technologies: ["Laravel", "Next.js", "TypeScript", "Tailwind CSS", "MySQL"],
+    github: "https://github.com",
+    demo: "https://service-system-isex.vercel.app/",
+    category: "Full Stack",
+    isPrivate: true,
+    featured: true,
+    links: [
+      { label: "Customer App", url: "https://service-system-isex.vercel.app/" },
+      { label: "Merchant Portal", url: "https://service-system-merchant.vercel.app/" },
+    ],
+  },
+  {
     id: 1,
     title: "Bticket E-Commerce System",
     description:
       "A full-featured e-commerce platform with efficient, well-documented, and testable backend architecture built for Betrnk Tours Inc.",
     longDescription:
       "Bticket is a full-featured e-commerce platform built for Betrnk Tours Inc. The system handles product catalog management, order processing, payment integration, and customer account management. Includes a dedicated merchant admin panel (B-Merchant) for vendor management. Built with a focus on clean API architecture, comprehensive test coverage, and thorough Swagger documentation to enable seamless frontend-backend integration.",
-    image: "/projects/ecommerce.jpg",
+    image: "/projects/bticket-home.png",
+    screenshots: [
+      "/projects/bticket-home.png",
+      "/projects/bticket-search.png",
+      "/projects/bticket-store.png",
+      "/projects/bticket-merchant.png",
+    ],
     highlights: [
       "Customer-facing storefront at b-ticket.ph",
       "Merchant admin panel (B-Merchant) for vendor management",

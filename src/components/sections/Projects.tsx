@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { ExternalLink, Github, Folder, Lock, Star } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProjectModal } from "@/components/ui/ProjectModal";
@@ -57,7 +58,7 @@ export function Projects() {
                 onClick={() => setSelectedProject(project)}
                 className="group relative rounded-2xl bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 overflow-hidden card-hover cursor-pointer"
               >
-                {/* Project Image Placeholder */}
+                {/* Project Image */}
                 <div className="relative h-48 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center overflow-hidden">
                   {project.featured && (
                     <span className="absolute top-3 left-3 z-10 flex items-center gap-1 text-xs font-semibold px-2 py-1 rounded-full bg-amber-400 text-amber-950 shadow-sm">
@@ -65,10 +66,19 @@ export function Projects() {
                       Featured
                     </span>
                   )}
-                  <Folder
-                    size={48}
-                    className="text-primary/40 group-hover:scale-110 transition-transform duration-300"
-                  />
+                  {project.screenshots && project.screenshots.length > 0 ? (
+                    <Image
+                      src={project.screenshots[0]}
+                      alt={project.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  ) : (
+                    <Folder
+                      size={48}
+                      className="text-primary/40 group-hover:scale-110 transition-transform duration-300"
+                    />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-slate-800/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
 

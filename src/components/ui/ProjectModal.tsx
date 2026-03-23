@@ -24,6 +24,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const [activeImage, setActiveImage] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   // Lock body scroll & trap focus
   useEffect(() => {
@@ -46,9 +47,10 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
     };
   }, [project, onClose]);
 
-  // Reset active image when project changes
+  // Reset active image and lightbox when project changes
   useEffect(() => {
     setActiveImage(0);
+    setLightboxOpen(false);
   }, [project?.id]);
 
   const screenshots = project?.screenshots ?? [];
@@ -96,12 +98,18 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             <div className="relative h-56 sm:h-64 bg-gradient-to-br from-primary/20 to-secondary/20 overflow-hidden">
               {hasScreenshots ? (
                 <>
-                  <Image
-                    src={screenshots[activeImage]}
-                    alt={`${project.title} screenshot ${activeImage + 1}`}
-                    fill
-                    className="object-cover"
-                  />
+                  <button
+                    onClick={() => setLightboxOpen(true)}
+                    className="absolute inset-0 z-[1] cursor-zoom-in"
+                    aria-label="View full size image"
+                  >
+                    <Image
+                      src={screenshots[activeImage]}
+                      alt={`${project.title} screenshot ${activeImage + 1}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </button>
                   {screenshots.length > 1 && (
                     <>
                       <button
@@ -269,6 +277,63 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               ) : null}
             </div>
           </motion.div>
+        </motion.div>
+      )}
+      {/* Lightbox */}
+      {lightboxOpen && project && screenshots.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 cursor-zoom-out"
+          onClick={() => setLightboxOpen(false)}
+        >
+          <button
+            onClick={() => setLightboxOpen(false)}
+            className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+            aria-label="Close lightbox"
+          >
+            <X size={24} />
+          </button>
+          {screenshots.length > 1 && (
+            <>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveImage((prev) =>
+                    prev === 0 ? screenshots.length - 1 : prev - 1
+                  );
+                }}
+                className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+                aria-label="Previous image"
+              >
+                <ChevronLeft size={28} />
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveImage((prev) =>
+                    prev === screenshots.length - 1 ? 0 : prev + 1
+                  );
+                }}
+                className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+                aria-label="Next image"
+              >
+                <ChevronRight size={28} />
+              </button>
+            </>
+          )}
+          <div
+            className="relative w-[90vw] h-[85vh] cursor-default"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={screenshots[activeImage]}
+              alt={`${project.title} screenshot ${activeImage + 1}`}
+              fill
+              className="object-contain"
+            />
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
