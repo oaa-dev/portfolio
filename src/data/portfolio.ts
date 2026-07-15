@@ -373,19 +373,20 @@ export const projects: Project[] = [
 export const experiences: Experience[] = [
 	{
 		id: 1,
-		role: "Backend Engineer (PHP / API Developer)",
+		role: "Fullstack",
 		company: "Betrnk Tours Inc.",
 		period: "March 2025 - Present",
 		description: [
 			"Develop E-commerce system for company",
 			"Utilized Laravel, MySQL, Redis, RabbitMQ to create efficient, well-documented, and testable backend architecture",
+			"Use NextJS, Typescript, Shadcn, Tailwind on frontend application",
 			"Write unit tests to ensure code reliability and maintainability",
-			"Document APIs using Swagger for clear frontend-backend integration",
-			"Collaborate with Frontend developer and UI/UX Designer to deliver optimized API endpoints",
+			"Collaborate with the UI/UX design team to align technical implementation with interface requirements and deliver optimized, user-centered experience",
 			"Leverage AI tools (Claude AI, Augment) to accelerate development workflows",
 		],
 		technologies: [
 			"Laravel",
+			"NextJS",
 			"MySQL",
 			"Redis",
 			"RabbitMQ",
