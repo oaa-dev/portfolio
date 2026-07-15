@@ -373,7 +373,7 @@ export const projects: Project[] = [
 export const experiences: Experience[] = [
 	{
 		id: 1,
-		role: "Fullstack",
+		role: "Fullstack Developer",
 		company: "Betrnk Tours Inc.",
 		period: "March 2025 - Present",
 		description: [
